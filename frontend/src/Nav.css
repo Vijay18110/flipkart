@@ -1,0 +1,102 @@
+.input {
+    width: 350px;
+    background-color: lightblue;
+    outline: none;
+    border: none;
+    padding: 10px;
+    padding-left: 60px;
+
+}
+
+.searchicon {
+    position: relative;
+    left: 50px;
+    top: 7px;
+    color: black;
+}
+
+.collast {
+    display: flex;
+    flex-direction: row;
+}
+
+.collast button {
+    position: relative;
+    top: 2px;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    border-radius: 3rem;
+    margin: 0 auto;
+}
+
+.collast ul {
+    display: flex;
+    gap: 1rem;
+}
+
+button a {
+    color: black;
+}
+
+button img {
+    position: relative;
+    top: 5px;
+}
+
+button .toggle1 {
+    position: relative;
+    top: 5px;
+}
+
+/* .collast ul li span {
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+} */
+
+.navbar11 .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+
+
+
+
+
+.imgcard {
+    margin-top: 10 px;
+}
+
+
+.lic a {
+    justify-content: center;
+    font: 100;
+    font-size: 20px;
+    color: black;
+}
+
+.btn {
+    color: black;
+
+    &:hover {
+        color: white;
+        background-color: blue;
+
+    }
+}
+
+.input::placeholder {
+    font-weight: bold;
+    /* text-align: center; */
+}
+
+a {
+    color: white;
+    text-decoration: none;
+
+}

@@ -1,0 +1,13 @@
+.category {
+    display: flex;
+    flex-direction: column;
+}
+
+.row2 {
+    box-shadow: 0px 0px 5px gray;
+}
+
+.bannerbottom {
+    border: 1px black;
+    box-shadow: 0px 0px 10px gray;
+}
