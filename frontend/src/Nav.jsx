@@ -16,16 +16,12 @@ const Nav = () => {
     const { count, setcount, counttotalcard } = useContext(CradContext)
     const logoutCustomer = () => {
         removecookie("customer");
-        setcount(0)
         Navigate('/subcategory/' + id);
-
+        setcount(0)
     }
-
     useEffect(() => {
-
     }, [])
     const data = () => {
-
         if (cookie["customer"] != null) {
             return (
                 <h6 className='fs-5'>
