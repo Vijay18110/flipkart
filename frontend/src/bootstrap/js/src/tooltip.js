@@ -22,12 +22,12 @@ import TemplateFactory from './util/template-factory.js'
 const NAME = 'tooltip'
 const DISALLOWED_ATTRIBUTES = new Set(['sanitize', 'allowList', 'sanitizeFn'])
 
-const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_MODAL = 'modal'
-const CLASS_NAME_SHOW = 'show'
+const className_NAME_FADE = 'fade'
+const className_NAME_MODAL = 'modal'
+const className_NAME_SHOW = 'show'
 
 const SELECTOR_TOOLTIP_INNER = '.tooltip-inner'
-const SELECTOR_MODAL = `.${CLASS_NAME_MODAL}`
+const SELECTOR_MODAL = `.${className_NAME_MODAL}`
 
 const EVENT_MODAL_HIDE = 'hide.bs.modal'
 
@@ -60,7 +60,7 @@ const Default = {
   animation: true,
   boundary: 'clippingParents',
   container: false,
-  customClass: '',
+  customclassName: '',
   delay: 0,
   fallbackPlacements: ['top', 'right', 'bottom', 'left'],
   html: false,
@@ -70,10 +70,10 @@ const Default = {
   sanitize: true,
   sanitizeFn: null,
   selector: false,
-  template: '<div class="tooltip" role="tooltip">' +
-            '<div class="tooltip-arrow"></div>' +
-            '<div class="tooltip-inner"></div>' +
-            '</div>',
+  template: '<div className="tooltip" role="tooltip">' +
+    '<div className="tooltip-arrow"></div>' +
+    '<div className="tooltip-inner"></div>' +
+    '</div>',
   title: '',
   trigger: 'hover focus'
 }
@@ -83,7 +83,7 @@ const DefaultType = {
   animation: 'boolean',
   boundary: '(string|element)',
   container: '(string|element|boolean)',
-  customClass: '(string|function)',
+  customclassName: '(string|function)',
   delay: '(number|object)',
   fallbackPlacements: 'array',
   html: 'boolean',
@@ -99,10 +99,10 @@ const DefaultType = {
 }
 
 /**
- * Class definition
+ * className definition
  */
 
-class Tooltip extends BaseComponent {
+className Tooltip extends BaseComponent {
   constructor(element, config) {
     if (typeof Popper === 'undefined') {
       throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)')
@@ -215,7 +215,7 @@ class Tooltip extends BaseComponent {
 
     this._popper = this._createPopper(tip)
 
-    tip.classList.add(CLASS_NAME_SHOW)
+    tip.classNameList.add(className_NAME_SHOW)
 
     // If this is a touch-enabled device we add extra
     // empty mouseover listeners to the body's immediate children;
@@ -251,7 +251,7 @@ class Tooltip extends BaseComponent {
     }
 
     const tip = this._getTipElement()
-    tip.classList.remove(CLASS_NAME_SHOW)
+    tip.classNameList.remove(className_NAME_SHOW)
 
     // If this is a touch-enabled device we remove the extra
     // empty mouseover listeners we added for iOS support
@@ -309,16 +309,16 @@ class Tooltip extends BaseComponent {
       return null
     }
 
-    tip.classList.remove(CLASS_NAME_FADE, CLASS_NAME_SHOW)
+    tip.classNameList.remove(className_NAME_FADE, className_NAME_SHOW)
     // TODO: v6 the following can be achieved with CSS only
-    tip.classList.add(`bs-${this.constructor.NAME}-auto`)
+    tip.classNameList.add(`bs-${this.constructor.NAME}-auto`)
 
     const tipId = getUID(this.constructor.NAME).toString()
 
     tip.setAttribute('id', tipId)
 
     if (this._isAnimated()) {
-      tip.classList.add(CLASS_NAME_FADE)
+      tip.classNameList.add(className_NAME_FADE)
     }
 
     return tip
@@ -341,7 +341,7 @@ class Tooltip extends BaseComponent {
         // the `content` var has to be after `this._config`
         // to override config.content in case of popover
         content,
-        extraClass: this._resolvePossibleFunction(this._config.customClass)
+        extraclassName: this._resolvePossibleFunction(this._config.customclassName)
       })
     }
 
@@ -364,11 +364,11 @@ class Tooltip extends BaseComponent {
   }
 
   _isAnimated() {
-    return this._config.animation || (this.tip && this.tip.classList.contains(CLASS_NAME_FADE))
+    return this._config.animation || (this.tip && this.tip.classNameList.contains(className_NAME_FADE))
   }
 
   _isShown() {
-    return this.tip && this.tip.classList.contains(CLASS_NAME_SHOW)
+    return this.tip && this.tip.classNameList.contains(className_NAME_SHOW)
   }
 
   _createPopper(tip) {

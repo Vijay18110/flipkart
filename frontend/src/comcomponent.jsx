@@ -17,7 +17,7 @@ const Sidemenu = () => {
                     <Link to={"/product"}>product</Link>
                 </li>
                 <li>
-                    <Link to={"/product"}>view order</Link>
+                    <Link to={"/placedorder"}>view order</Link>
                 </li>
 
             </ul>

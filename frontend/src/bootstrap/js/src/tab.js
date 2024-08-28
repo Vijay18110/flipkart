@@ -33,10 +33,10 @@ const ARROW_DOWN_KEY = 'ArrowDown'
 const HOME_KEY = 'Home'
 const END_KEY = 'End'
 
-const CLASS_NAME_ACTIVE = 'active'
-const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_SHOW = 'show'
-const CLASS_DROPDOWN = 'dropdown'
+const className_NAME_ACTIVE = 'active'
+const className_NAME_FADE = 'fade'
+const className_NAME_SHOW = 'show'
+const className_DROPDOWN = 'dropdown'
 
 const SELECTOR_DROPDOWN_TOGGLE = '.dropdown-toggle'
 const SELECTOR_DROPDOWN_MENU = '.dropdown-menu'
@@ -48,13 +48,13 @@ const SELECTOR_INNER = `.nav-link${NOT_SELECTOR_DROPDOWN_TOGGLE}, .list-group-it
 const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="tab"], [data-bs-toggle="pill"], [data-bs-toggle="list"]' // TODO: could only be `tab` in v6
 const SELECTOR_INNER_ELEM = `${SELECTOR_INNER}, ${SELECTOR_DATA_TOGGLE}`
 
-const SELECTOR_DATA_TOGGLE_ACTIVE = `.${CLASS_NAME_ACTIVE}[data-bs-toggle="tab"], .${CLASS_NAME_ACTIVE}[data-bs-toggle="pill"], .${CLASS_NAME_ACTIVE}[data-bs-toggle="list"]`
+const SELECTOR_DATA_TOGGLE_ACTIVE = `.${className_NAME_ACTIVE}[data-bs-toggle="tab"], .${className_NAME_ACTIVE}[data-bs-toggle="pill"], .${className_NAME_ACTIVE}[data-bs-toggle="list"]`
 
 /**
- * Class definition
+ * className definition
  */
 
-class Tab extends BaseComponent {
+className Tab extends BaseComponent {
   constructor(element) {
     super(element)
     this._parent = this._element.closest(SELECTOR_TAB_PANEL)
@@ -106,13 +106,13 @@ class Tab extends BaseComponent {
       return
     }
 
-    element.classList.add(CLASS_NAME_ACTIVE)
+    element.classNameList.add(className_NAME_ACTIVE)
 
     this._activate(SelectorEngine.getElementFromSelector(element)) // Search and activate/show the proper section
 
     const complete = () => {
       if (element.getAttribute('role') !== 'tab') {
-        element.classList.add(CLASS_NAME_SHOW)
+        element.classNameList.add(className_NAME_SHOW)
         return
       }
 
@@ -124,7 +124,7 @@ class Tab extends BaseComponent {
       })
     }
 
-    this._queueCallback(complete, element, element.classList.contains(CLASS_NAME_FADE))
+    this._queueCallback(complete, element, element.classNameList.contains(className_NAME_FADE))
   }
 
   _deactivate(element, relatedElem) {
@@ -132,14 +132,14 @@ class Tab extends BaseComponent {
       return
     }
 
-    element.classList.remove(CLASS_NAME_ACTIVE)
+    element.classNameList.remove(className_NAME_ACTIVE)
     element.blur()
 
     this._deactivate(SelectorEngine.getElementFromSelector(element)) // Search and deactivate the shown section too
 
     const complete = () => {
       if (element.getAttribute('role') !== 'tab') {
-        element.classList.remove(CLASS_NAME_SHOW)
+        element.classNameList.remove(className_NAME_SHOW)
         return
       }
 
@@ -149,7 +149,7 @@ class Tab extends BaseComponent {
       EventHandler.trigger(element, EVENT_HIDDEN, { relatedTarget: relatedElem })
     }
 
-    this._queueCallback(complete, element, element.classList.contains(CLASS_NAME_FADE))
+    this._queueCallback(complete, element, element.classNameList.contains(className_NAME_FADE))
   }
 
   _keydown(event) {
@@ -228,19 +228,19 @@ class Tab extends BaseComponent {
 
   _toggleDropDown(element, open) {
     const outerElem = this._getOuterElement(element)
-    if (!outerElem.classList.contains(CLASS_DROPDOWN)) {
+    if (!outerElem.classNameList.contains(className_DROPDOWN)) {
       return
     }
 
     const toggle = (selector, className) => {
       const element = SelectorEngine.findOne(selector, outerElem)
       if (element) {
-        element.classList.toggle(className, open)
+        element.classNameList.toggle(className, open)
       }
     }
 
-    toggle(SELECTOR_DROPDOWN_TOGGLE, CLASS_NAME_ACTIVE)
-    toggle(SELECTOR_DROPDOWN_MENU, CLASS_NAME_SHOW)
+    toggle(SELECTOR_DROPDOWN_TOGGLE, className_NAME_ACTIVE)
+    toggle(SELECTOR_DROPDOWN_MENU, className_NAME_SHOW)
     outerElem.setAttribute('aria-expanded', open)
   }
 
@@ -251,7 +251,7 @@ class Tab extends BaseComponent {
   }
 
   _elemIsActive(elem) {
-    return elem.classList.contains(CLASS_NAME_ACTIVE)
+    return elem.classNameList.contains(className_NAME_ACTIVE)
   }
 
   // Try to get the inner element (usually the .nav-link)

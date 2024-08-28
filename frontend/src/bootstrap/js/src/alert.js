@@ -20,14 +20,14 @@ const EVENT_KEY = `.${DATA_KEY}`
 
 const EVENT_CLOSE = `close${EVENT_KEY}`
 const EVENT_CLOSED = `closed${EVENT_KEY}`
-const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_SHOW = 'show'
+const className_NAME_FADE = 'fade'
+const className_NAME_SHOW = 'show'
 
 /**
- * Class definition
+ * className definition
  */
 
-class Alert extends BaseComponent {
+className Alert extends BaseComponent {
   // Getters
   static get NAME() {
     return NAME
@@ -41,9 +41,9 @@ class Alert extends BaseComponent {
       return
     }
 
-    this._element.classList.remove(CLASS_NAME_SHOW)
+    this._element.classNameList.remove(className_NAME_SHOW)
 
-    const isAnimated = this._element.classList.contains(CLASS_NAME_FADE)
+    const isAnimated = this._element.classNameList.contains(className_NAME_FADE)
     this._queueCallback(() => this._destroyElement(), this._element, isAnimated)
   }
 

@@ -45,13 +45,13 @@
     justify-content: space-between;
   }
 
-  > .container,
-  > .container-fluid {
+  >.container,
+  >.container-fluid {
     @extend %container-flex-properties;
   }
 
   @each $breakpoint, $container-max-width in $container-max-widths {
-    > .container#{breakpoint-infix($breakpoint, $container-max-widths)} {
+    >.container#{breakpoint-infix($breakpoint, $container-max-widths)} {
       @extend %container-flex-properties;
     }
   }
@@ -68,13 +68,13 @@
   margin-right: var(--#{$prefix}navbar-brand-margin-end);
   @include font-size(var(--#{$prefix}navbar-brand-font-size));
   color: var(--#{$prefix}navbar-brand-color);
-  text-decoration: if($link-decoration == none, null, none);
+  text-decoration: if($link-decoration ==none, null, none);
   white-space: nowrap;
 
   &:hover,
   &:focus {
     color: var(--#{$prefix}navbar-brand-hover-color);
-    text-decoration: if($link-hover-decoration == underline, none, null);
+    text-decoration: if($link-hover-decoration ==underline, none, null);
   }
 }
 
@@ -101,6 +101,7 @@
   list-style: none;
 
   .nav-link {
+
     &.active,
     &.show {
       color: var(--#{$prefix}navbar-active-color);
@@ -124,7 +125,7 @@
 
   a,
   a:hover,
-  a:focus  {
+  a:focus {
     color: var(--#{$prefix}navbar-active-color);
   }
 }
@@ -187,14 +188,14 @@
 }
 
 // scss-docs-start navbar-expand-loop
-// Generate series of `.navbar-expand-*` responsive classes for configuring
+// Generate series of `.navbar-expand-*` responsive classNamees for configuring
 // where your navbar collapses.
 .navbar-expand {
   @each $breakpoint in map-keys($grid-breakpoints) {
     $next: breakpoint-next($breakpoint, $grid-breakpoints);
     $infix: breakpoint-infix($next, $grid-breakpoints);
 
-    // stylelint-disable-next-line scss/selector-no-union-class-name
+    // stylelint-disable-next-line scss/selector-no-union-className-name
     &#{$infix} {
       @include media-breakpoint-up($next) {
         flex-wrap: nowrap;
@@ -256,6 +257,7 @@
     }
   }
 }
+
 // scss-docs-end navbar-expand-loop
 
 // Navbar themes

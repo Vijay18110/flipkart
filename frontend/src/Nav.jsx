@@ -8,19 +8,16 @@ import logo from './assets/vijay1.png'
 import { useCookies } from 'react-cookie'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import './Nav.css'
-import { CradContext } from './Context'
+import { useDispatch, useSelector } from 'react-redux';
 const Nav = () => {
+    const count = useSelector((state) => state.managecard);
     const Navigate = useNavigate();
     const [cookie, createcookie, removecookie] = useCookies();
     const { id } = useParams();
-    const { count, setcount, counttotalcard } = useContext(CradContext)
     const logoutCustomer = () => {
         removecookie("customer");
         Navigate('/subcategory/' + id);
-        setcount(0)
     }
-    useEffect(() => {
-    }, [])
     const data = () => {
         if (cookie["customer"] != null) {
             return (
@@ -33,51 +30,45 @@ const Nav = () => {
         }
         else {
             return (
-                <div>
-                    <img src={user} alt="" />
-                    <Link className='fs-5' to={"/customer/register/" + id}>register</Link>
-                    <img className='ps-1 toggle1' src={toggle} alt="" />
-                </div>
+                <Link className='fs-5' to={"/customer/register/" + id}>
+                    <div>
+                        <img src={user} alt="" />
+                        <span>register</span>
+                        <img className='ps-1 toggle1' src={toggle} alt="" />
+                    </div>
+                </Link>
             )
         }
     }
     return (
-
-        <nav class="navbar navbar-expand-sm navbar-dark bg-light navbar11 ">
-            <div class="container">
-                <div className="row">
-                    <div className="col-md">
-                        <a class="navbar-brand  " href="javascript:void(0)">
+        <nav className="navbar navbar-expand-sm navbar-dark bg-light navbar11 ">
+            <div className="container-fluid">
+                <div className="row  w-100">
+                    <div className="col-md-2 col-2">
+                        <a className="navbar-brand  " href="javascript:void(0)">
                             <img style={{ width: "80px", height: "80px" }} src={logo} alt="" />
                         </a>
                     </div>
-                    <div className="col-md d-flex ms-3">
-                        <form class="">
-                            <div className='d-flex'>
-                                <i className='searchicon mb-3'><IoSearch></IoSearch></i>
-                                <input class=" input form-control me-2" type="text" placeholder="Search for Products,Brands and More" />
-                            </div>
-
-                        </form>
+                    <div className="col-md-4 col-12  d-flex from-group" >
+                        <input type="text" className="input from-control" name="" id="" />
                     </div>
-                    <div className="col-md collast  ">
-                        <button class="btn me-5 " type="button" >
+                    <div className="col-md-6 col-10  d-flex  justify-content-around align-item-center">
+                        <button className="btn me-2 " type="button" >
                             {
                                 data()
                             }
                         </button>
-                        <div class=" " id="mynavbar">
-                            <ul class="navbar-nav me-auto  ">
+                        <div className=" " id="mynavbar">
+                            <ul className="navbar-nav me-auto d-flex f-wrap">
                                 <Link to={"/carddetail/" + cookie.customer}>
-                                    <li class="nav-item lic text-black d-flex ">
+                                    <li className="nav-item lic text-black d-flex ">
                                         <i> <img className='rounded-circle mt-3 imgcard' src={card} alt="" /></i>
-
-                                        {/* <Link class="nav-link fs-5 mt-1" href="javascript:void(0)"> <span className=''>Cart</span></Link> */}
-                                        <div type="button" class="btn position-relative">
+                                        {/* <Link className="nav-link fs-5 mt-1" href="javascript:void(0)"> <span className=''>Cart</span></Link> */}
+                                        <div type="button" className="btn position-relative">
                                             <span className='fs-3'> cart</span>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                                 {count}
-                                                <span class="visually-hidden">unread messages</span>
+                                                <span className="visually-hidden">unread messages</span>
                                             </span>
                                         </div>
                                     </li>
@@ -85,18 +76,15 @@ const Nav = () => {
                                 <li>  <div className=' '>
                                     <button onClick={logoutCustomer} className='fs-5 btn text-center justify-content-center'>logout</button>
                                 </div></li>
+                                <Link to='/userorder'> <li>  <div className=' '>
+                                    <button className='fs-5 btn text-center justify-content-center'>view order</button>
+                                </div></li></Link>
                             </ul>
-
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </nav >
-
     )
 }
-
 export default Nav

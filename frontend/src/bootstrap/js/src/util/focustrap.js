@@ -34,10 +34,10 @@ const DefaultType = {
 }
 
 /**
- * Class definition
+ * className definition
  */
 
-class FocusTrap extends Config {
+className FocusTrap extends Config {
   constructor(config) {
     super()
     this._config = this._getConfig(config)

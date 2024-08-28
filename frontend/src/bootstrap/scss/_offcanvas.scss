@@ -93,7 +93,7 @@
       }
     }
 
-    @if not ($infix == "") {
+    @if not ($infix =="") {
       @include media-breakpoint-up($next) {
         --#{$prefix}offcanvas-height: auto;
         --#{$prefix}offcanvas-border-width: 0;
@@ -108,7 +108,7 @@
           flex-grow: 0;
           padding: 0;
           overflow-y: visible;
-          // Reset `background-color` in case `.bg-*` classes are used in offcanvas
+          // Reset `background-color` in case `.bg-*` classNamees are used in offcanvas
           background-color: transparent !important; // stylelint-disable-line declaration-no-important
         }
       }

@@ -16,8 +16,8 @@ import {
  */
 
 const NAME = 'backdrop'
-const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_SHOW = 'show'
+const className_NAME_FADE = 'fade'
+const className_NAME_SHOW = 'show'
 const EVENT_MOUSEDOWN = `mousedown.bs.${NAME}`
 
 const Default = {
@@ -37,10 +37,10 @@ const DefaultType = {
 }
 
 /**
- * Class definition
+ * className definition
  */
 
-class Backdrop extends Config {
+className Backdrop extends Config {
   constructor(config) {
     super()
     this._config = this._getConfig(config)
@@ -75,7 +75,7 @@ class Backdrop extends Config {
       reflow(element)
     }
 
-    element.classList.add(CLASS_NAME_SHOW)
+    element.classNameList.add(className_NAME_SHOW)
 
     this._emulateAnimation(() => {
       execute(callback)
@@ -88,7 +88,7 @@ class Backdrop extends Config {
       return
     }
 
-    this._getElement().classList.remove(CLASS_NAME_SHOW)
+    this._getElement().classNameList.remove(className_NAME_SHOW)
 
     this._emulateAnimation(() => {
       this.dispose()
@@ -113,7 +113,7 @@ class Backdrop extends Config {
       const backdrop = document.createElement('div')
       backdrop.className = this._config.className
       if (this._config.isAnimated) {
-        backdrop.classList.add(CLASS_NAME_FADE)
+        backdrop.classNameList.add(className_NAME_FADE)
       }
 
       this._element = backdrop

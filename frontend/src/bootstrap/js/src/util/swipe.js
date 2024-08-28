@@ -22,7 +22,7 @@ const EVENT_POINTERDOWN = `pointerdown${EVENT_KEY}`
 const EVENT_POINTERUP = `pointerup${EVENT_KEY}`
 const POINTER_TYPE_TOUCH = 'touch'
 const POINTER_TYPE_PEN = 'pen'
-const CLASS_NAME_POINTER_EVENT = 'pointer-event'
+const className_NAME_POINTER_EVENT = 'pointer-event'
 const SWIPE_THRESHOLD = 40
 
 const Default = {
@@ -38,10 +38,10 @@ const DefaultType = {
 }
 
 /**
- * Class definition
+ * className definition
  */
 
-class Swipe extends Config {
+className Swipe extends Config {
   constructor(element, config) {
     super()
     this._element = element
@@ -125,7 +125,7 @@ class Swipe extends Config {
       EventHandler.on(this._element, EVENT_POINTERDOWN, event => this._start(event))
       EventHandler.on(this._element, EVENT_POINTERUP, event => this._end(event))
 
-      this._element.classList.add(CLASS_NAME_POINTER_EVENT)
+      this._element.classNameList.add(className_NAME_POINTER_EVENT)
     } else {
       EventHandler.on(this._element, EVENT_TOUCHSTART, event => this._start(event))
       EventHandler.on(this._element, EVENT_TOUCHMOVE, event => this._move(event))

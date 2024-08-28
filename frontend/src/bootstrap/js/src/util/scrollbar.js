@@ -19,10 +19,10 @@ const PROPERTY_PADDING = 'padding-right'
 const PROPERTY_MARGIN = 'margin-right'
 
 /**
- * Class definition
+ * className definition
  */
 
-class ScrollBarHelper {
+className ScrollBarHelper {
   constructor() {
     this._element = document.body
   }

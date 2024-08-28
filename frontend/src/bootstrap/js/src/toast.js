@@ -27,10 +27,10 @@ const EVENT_HIDDEN = `hidden${EVENT_KEY}`
 const EVENT_SHOW = `show${EVENT_KEY}`
 const EVENT_SHOWN = `shown${EVENT_KEY}`
 
-const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_HIDE = 'hide' // @deprecated - kept here only for backwards compatibility
-const CLASS_NAME_SHOW = 'show'
-const CLASS_NAME_SHOWING = 'showing'
+const className_NAME_FADE = 'fade'
+const className_NAME_HIDE = 'hide' // @deprecated - kept here only for backwards compatibility
+const className_NAME_SHOW = 'show'
+const className_NAME_SHOWING = 'showing'
 
 const DefaultType = {
   animation: 'boolean',
@@ -45,10 +45,10 @@ const Default = {
 }
 
 /**
- * Class definition
+ * className definition
  */
 
-class Toast extends BaseComponent {
+className Toast extends BaseComponent {
   constructor(element, config) {
     super(element, config)
 
@@ -82,19 +82,19 @@ class Toast extends BaseComponent {
     this._clearTimeout()
 
     if (this._config.animation) {
-      this._element.classList.add(CLASS_NAME_FADE)
+      this._element.classNameList.add(className_NAME_FADE)
     }
 
     const complete = () => {
-      this._element.classList.remove(CLASS_NAME_SHOWING)
+      this._element.classNameList.remove(className_NAME_SHOWING)
       EventHandler.trigger(this._element, EVENT_SHOWN)
 
       this._maybeScheduleHide()
     }
 
-    this._element.classList.remove(CLASS_NAME_HIDE) // @deprecated
+    this._element.classNameList.remove(className_NAME_HIDE) // @deprecated
     reflow(this._element)
-    this._element.classList.add(CLASS_NAME_SHOW, CLASS_NAME_SHOWING)
+    this._element.classNameList.add(className_NAME_SHOW, className_NAME_SHOWING)
 
     this._queueCallback(complete, this._element, this._config.animation)
   }
@@ -111,12 +111,12 @@ class Toast extends BaseComponent {
     }
 
     const complete = () => {
-      this._element.classList.add(CLASS_NAME_HIDE) // @deprecated
-      this._element.classList.remove(CLASS_NAME_SHOWING, CLASS_NAME_SHOW)
+      this._element.classNameList.add(className_NAME_HIDE) // @deprecated
+      this._element.classNameList.remove(className_NAME_SHOWING, className_NAME_SHOW)
       EventHandler.trigger(this._element, EVENT_HIDDEN)
     }
 
-    this._element.classList.add(CLASS_NAME_SHOWING)
+    this._element.classNameList.add(className_NAME_SHOWING)
     this._queueCallback(complete, this._element, this._config.animation)
   }
 
@@ -124,14 +124,14 @@ class Toast extends BaseComponent {
     this._clearTimeout()
 
     if (this.isShown()) {
-      this._element.classList.remove(CLASS_NAME_SHOW)
+      this._element.classNameList.remove(className_NAME_SHOW)
     }
 
     super.dispose()
   }
 
   isShown() {
-    return this._element.classList.contains(CLASS_NAME_SHOW)
+    return this._element.classNameList.contains(className_NAME_SHOW)
   }
 
   // Private

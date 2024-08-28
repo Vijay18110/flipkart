@@ -25,8 +25,8 @@ const EVENT_ACTIVATE = `activate${EVENT_KEY}`
 const EVENT_CLICK = `click${EVENT_KEY}`
 const EVENT_LOAD_DATA_API = `load${EVENT_KEY}${DATA_API_KEY}`
 
-const CLASS_NAME_DROPDOWN_ITEM = 'dropdown-item'
-const CLASS_NAME_ACTIVE = 'active'
+const className_NAME_DROPDOWN_ITEM = 'dropdown-item'
+const className_NAME_ACTIVE = 'active'
 
 const SELECTOR_DATA_SPY = '[data-bs-spy="scroll"]'
 const SELECTOR_TARGET_LINKS = '[href]'
@@ -55,10 +55,10 @@ const DefaultType = {
 }
 
 /**
- * Class definition
+ * className definition
  */
 
-class ScrollSpy extends BaseComponent {
+className ScrollSpy extends BaseComponent {
   constructor(element, config) {
     super(element, config)
 
@@ -174,7 +174,7 @@ class ScrollSpy extends BaseComponent {
     for (const entry of entries) {
       if (!entry.isIntersecting) {
         this._activeTarget = null
-        this._clearActiveClass(targetElement(entry))
+        this._clearActiveclassName(targetElement(entry))
 
         continue
       }
@@ -225,9 +225,9 @@ class ScrollSpy extends BaseComponent {
       return
     }
 
-    this._clearActiveClass(this._config.target)
+    this._clearActiveclassName(this._config.target)
     this._activeTarget = target
-    target.classList.add(CLASS_NAME_ACTIVE)
+    target.classNameList.add(className_NAME_ACTIVE)
     this._activateParents(target)
 
     EventHandler.trigger(this._element, EVENT_ACTIVATE, { relatedTarget: target })
@@ -235,9 +235,9 @@ class ScrollSpy extends BaseComponent {
 
   _activateParents(target) {
     // Activate dropdown parents
-    if (target.classList.contains(CLASS_NAME_DROPDOWN_ITEM)) {
+    if (target.classNameList.contains(className_NAME_DROPDOWN_ITEM)) {
       SelectorEngine.findOne(SELECTOR_DROPDOWN_TOGGLE, target.closest(SELECTOR_DROPDOWN))
-        .classList.add(CLASS_NAME_ACTIVE)
+        .classNameList.add(className_NAME_ACTIVE)
       return
     }
 
@@ -245,17 +245,17 @@ class ScrollSpy extends BaseComponent {
       // Set triggered links parents as active
       // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
       for (const item of SelectorEngine.prev(listGroup, SELECTOR_LINK_ITEMS)) {
-        item.classList.add(CLASS_NAME_ACTIVE)
+        item.classNameList.add(className_NAME_ACTIVE)
       }
     }
   }
 
-  _clearActiveClass(parent) {
-    parent.classList.remove(CLASS_NAME_ACTIVE)
+  _clearActiveclassName(parent) {
+    parent.classNameList.remove(className_NAME_ACTIVE)
 
-    const activeNodes = SelectorEngine.find(`${SELECTOR_TARGET_LINKS}.${CLASS_NAME_ACTIVE}`, parent)
+    const activeNodes = SelectorEngine.find(`${SELECTOR_TARGET_LINKS}.${className_NAME_ACTIVE}`, parent)
     for (const node of activeNodes) {
-      node.classList.remove(CLASS_NAME_ACTIVE)
+      node.classNameList.remove(className_NAME_ACTIVE)
     }
   }
 

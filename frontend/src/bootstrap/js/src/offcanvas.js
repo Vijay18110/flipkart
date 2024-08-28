@@ -29,10 +29,10 @@ const DATA_API_KEY = '.data-api'
 const EVENT_LOAD_DATA_API = `load${EVENT_KEY}${DATA_API_KEY}`
 const ESCAPE_KEY = 'Escape'
 
-const CLASS_NAME_SHOW = 'show'
-const CLASS_NAME_SHOWING = 'showing'
-const CLASS_NAME_HIDING = 'hiding'
-const CLASS_NAME_BACKDROP = 'offcanvas-backdrop'
+const className_NAME_SHOW = 'show'
+const className_NAME_SHOWING = 'showing'
+const className_NAME_HIDING = 'hiding'
+const className_NAME_BACKDROP = 'offcanvas-backdrop'
 const OPEN_SELECTOR = '.offcanvas.show'
 
 const EVENT_SHOW = `show${EVENT_KEY}`
@@ -59,10 +59,10 @@ const DefaultType = {
 }
 
 /**
- * Class definition
+ * className definition
  */
 
-class Offcanvas extends BaseComponent {
+className Offcanvas extends BaseComponent {
   constructor(element, config) {
     super(element, config)
 
@@ -110,15 +110,15 @@ class Offcanvas extends BaseComponent {
 
     this._element.setAttribute('aria-modal', true)
     this._element.setAttribute('role', 'dialog')
-    this._element.classList.add(CLASS_NAME_SHOWING)
+    this._element.classNameList.add(className_NAME_SHOWING)
 
     const completeCallBack = () => {
       if (!this._config.scroll || this._config.backdrop) {
         this._focustrap.activate()
       }
 
-      this._element.classList.add(CLASS_NAME_SHOW)
-      this._element.classList.remove(CLASS_NAME_SHOWING)
+      this._element.classNameList.add(className_NAME_SHOW)
+      this._element.classNameList.remove(className_NAME_SHOWING)
       EventHandler.trigger(this._element, EVENT_SHOWN, { relatedTarget })
     }
 
@@ -139,11 +139,11 @@ class Offcanvas extends BaseComponent {
     this._focustrap.deactivate()
     this._element.blur()
     this._isShown = false
-    this._element.classList.add(CLASS_NAME_HIDING)
+    this._element.classNameList.add(className_NAME_HIDING)
     this._backdrop.hide()
 
     const completeCallback = () => {
-      this._element.classList.remove(CLASS_NAME_SHOW, CLASS_NAME_HIDING)
+      this._element.classNameList.remove(className_NAME_SHOW, className_NAME_HIDING)
       this._element.removeAttribute('aria-modal')
       this._element.removeAttribute('role')
 
@@ -178,7 +178,7 @@ class Offcanvas extends BaseComponent {
     const isVisible = Boolean(this._config.backdrop)
 
     return new Backdrop({
-      className: CLASS_NAME_BACKDROP,
+      className: className_NAME_BACKDROP,
       isVisible,
       isAnimated: true,
       rootElement: this._element.parentNode,
@@ -264,7 +264,7 @@ EventHandler.on(window, EVENT_LOAD_DATA_API, () => {
 })
 
 EventHandler.on(window, EVENT_RESIZE, () => {
-  for (const element of SelectorEngine.find('[aria-modal][class*=show][class*=offcanvas-]')) {
+  for (const element of SelectorEngine.find('[aria-modal][className*=show][className*=offcanvas-]')) {
     if (getComputedStyle(element).position !== 'fixed') {
       Offcanvas.getOrCreateInstance(element).hide()
     }

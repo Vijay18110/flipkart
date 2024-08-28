@@ -1,4 +1,4 @@
-// Notes on the classes:
+// Notes on the classNamees:
 //
 // 1. .carousel.pointer-event should ideally be pan-y (to allow for users to scroll vertically)
 //    even when their scroll action started on a carousel, but for compatibility (with Firefox)
@@ -112,10 +112,12 @@
     opacity: $carousel-control-hover-opacity;
   }
 }
+
 .carousel-control-prev {
   left: 0;
   background-image: if($enable-gradients, linear-gradient(90deg, rgba($black, .25), rgba($black, .001)), null);
 }
+
 .carousel-control-next {
   right: 0;
   background-image: if($enable-gradients, linear-gradient(270deg, rgba($black, .25), rgba($black, .001)), null);
@@ -135,13 +137,14 @@
 .carousel-control-prev-icon {
   background-image: escape-svg($carousel-control-prev-icon-bg) #{"/*rtl:" + escape-svg($carousel-control-next-icon-bg) + "*/"};
 }
+
 .carousel-control-next-icon {
   background-image: escape-svg($carousel-control-next-icon-bg) #{"/*rtl:" + escape-svg($carousel-control-prev-icon-bg) + "*/"};
 }
 
 // Optional indicator pips/controls
 //
-// Add a container (such as a list) with the following class and add an item (ideally a focusable control,
+// Add a container (such as a list) with the following className and add an item (ideally a focusable control,
 // like a button) with data-bs-target for each slide your carousel holds.
 
 .carousel-indicators {
@@ -202,6 +205,7 @@
 // Dark mode carousel
 
 @mixin carousel-dark() {
+
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
     filter: $carousel-dark-control-icon-filter;
@@ -222,11 +226,14 @@
 
 @if $enable-dark-mode {
   @include color-mode(dark) {
-    @if $color-mode-type == "media-query" {
+    @if $color-mode-type =="media-query" {
       .carousel {
         @include carousel-dark();
       }
-    } @else {
+    }
+
+    @else {
+
       .carousel,
       &.carousel {
         @include carousel-dark();

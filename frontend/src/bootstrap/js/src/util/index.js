@@ -128,7 +128,7 @@ const isDisabled = element => {
     return true
   }
 
-  if (element.classList.contains('disabled')) {
+  if (element.classNameList.contains('disabled')) {
     return true
   }
 
@@ -162,7 +162,7 @@ const findShadowRoot = element => {
   return findShadowRoot(element.parentNode)
 }
 
-const noop = () => {}
+const noop = () => { }
 
 /**
  * Trick to restart an element's animation

@@ -17,10 +17,10 @@ import { executeAfterTransition, getElement } from './util/index.js'
 const VERSION = '5.3.3'
 
 /**
- * Class definition
+ * className definition
  */
 
-class BaseComponent extends Config {
+className BaseComponent extends Config {
   constructor(element, config) {
     super()
 

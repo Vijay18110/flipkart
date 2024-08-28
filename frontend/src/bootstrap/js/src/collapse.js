@@ -29,12 +29,12 @@ const EVENT_HIDE = `hide${EVENT_KEY}`
 const EVENT_HIDDEN = `hidden${EVENT_KEY}`
 const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`
 
-const CLASS_NAME_SHOW = 'show'
-const CLASS_NAME_COLLAPSE = 'collapse'
-const CLASS_NAME_COLLAPSING = 'collapsing'
-const CLASS_NAME_COLLAPSED = 'collapsed'
-const CLASS_NAME_DEEPER_CHILDREN = `:scope .${CLASS_NAME_COLLAPSE} .${CLASS_NAME_COLLAPSE}`
-const CLASS_NAME_HORIZONTAL = 'collapse-horizontal'
+const className_NAME_SHOW = 'show'
+const className_NAME_COLLAPSE = 'collapse'
+const className_NAME_COLLAPSING = 'collapsing'
+const className_NAME_COLLAPSED = 'collapsed'
+const className_NAME_DEEPER_CHILDREN = `:scope .${className_NAME_COLLAPSE} .${className_NAME_COLLAPSE}`
+const className_NAME_HORIZONTAL = 'collapse-horizontal'
 
 const WIDTH = 'width'
 const HEIGHT = 'height'
@@ -53,10 +53,10 @@ const DefaultType = {
 }
 
 /**
- * Class definition
+ * className definition
  */
 
-class Collapse extends BaseComponent {
+className Collapse extends BaseComponent {
   constructor(element, config) {
     super(element, config)
 
@@ -78,7 +78,7 @@ class Collapse extends BaseComponent {
     this._initializeChildren()
 
     if (!this._config.parent) {
-      this._addAriaAndCollapsedClass(this._triggerArray, this._isShown())
+      this._addAriaAndCollapsedclassName(this._triggerArray, this._isShown())
     }
 
     if (this._config.toggle) {
@@ -137,19 +137,19 @@ class Collapse extends BaseComponent {
 
     const dimension = this._getDimension()
 
-    this._element.classList.remove(CLASS_NAME_COLLAPSE)
-    this._element.classList.add(CLASS_NAME_COLLAPSING)
+    this._element.classNameList.remove(className_NAME_COLLAPSE)
+    this._element.classNameList.add(className_NAME_COLLAPSING)
 
     this._element.style[dimension] = 0
 
-    this._addAriaAndCollapsedClass(this._triggerArray, true)
+    this._addAriaAndCollapsedclassName(this._triggerArray, true)
     this._isTransitioning = true
 
     const complete = () => {
       this._isTransitioning = false
 
-      this._element.classList.remove(CLASS_NAME_COLLAPSING)
-      this._element.classList.add(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW)
+      this._element.classNameList.remove(className_NAME_COLLAPSING)
+      this._element.classNameList.add(className_NAME_COLLAPSE, className_NAME_SHOW)
 
       this._element.style[dimension] = ''
 
@@ -179,14 +179,14 @@ class Collapse extends BaseComponent {
 
     reflow(this._element)
 
-    this._element.classList.add(CLASS_NAME_COLLAPSING)
-    this._element.classList.remove(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW)
+    this._element.classNameList.add(className_NAME_COLLAPSING)
+    this._element.classNameList.remove(className_NAME_COLLAPSE, className_NAME_SHOW)
 
     for (const trigger of this._triggerArray) {
       const element = SelectorEngine.getElementFromSelector(trigger)
 
       if (element && !this._isShown(element)) {
-        this._addAriaAndCollapsedClass([trigger], false)
+        this._addAriaAndCollapsedclassName([trigger], false)
       }
     }
 
@@ -194,8 +194,8 @@ class Collapse extends BaseComponent {
 
     const complete = () => {
       this._isTransitioning = false
-      this._element.classList.remove(CLASS_NAME_COLLAPSING)
-      this._element.classList.add(CLASS_NAME_COLLAPSE)
+      this._element.classNameList.remove(className_NAME_COLLAPSING)
+      this._element.classNameList.add(className_NAME_COLLAPSE)
       EventHandler.trigger(this._element, EVENT_HIDDEN)
     }
 
@@ -205,7 +205,7 @@ class Collapse extends BaseComponent {
   }
 
   _isShown(element = this._element) {
-    return element.classList.contains(CLASS_NAME_SHOW)
+    return element.classNameList.contains(className_NAME_SHOW)
   }
 
   // Private
@@ -216,7 +216,7 @@ class Collapse extends BaseComponent {
   }
 
   _getDimension() {
-    return this._element.classList.contains(CLASS_NAME_HORIZONTAL) ? WIDTH : HEIGHT
+    return this._element.classNameList.contains(className_NAME_HORIZONTAL) ? WIDTH : HEIGHT
   }
 
   _initializeChildren() {
@@ -230,24 +230,24 @@ class Collapse extends BaseComponent {
       const selected = SelectorEngine.getElementFromSelector(element)
 
       if (selected) {
-        this._addAriaAndCollapsedClass([element], this._isShown(selected))
+        this._addAriaAndCollapsedclassName([element], this._isShown(selected))
       }
     }
   }
 
   _getFirstLevelChildren(selector) {
-    const children = SelectorEngine.find(CLASS_NAME_DEEPER_CHILDREN, this._config.parent)
+    const children = SelectorEngine.find(className_NAME_DEEPER_CHILDREN, this._config.parent)
     // remove children if greater depth
     return SelectorEngine.find(selector, this._config.parent).filter(element => !children.includes(element))
   }
 
-  _addAriaAndCollapsedClass(triggerArray, isOpen) {
+  _addAriaAndCollapsedclassName(triggerArray, isOpen) {
     if (!triggerArray.length) {
       return
     }
 
     for (const element of triggerArray) {
-      element.classList.toggle(CLASS_NAME_COLLAPSED, !isOpen)
+      element.classNameList.toggle(className_NAME_COLLAPSED, !isOpen)
       element.setAttribute('aria-expanded', isOpen)
     }
   }

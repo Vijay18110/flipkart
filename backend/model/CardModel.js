@@ -8,6 +8,7 @@ const cardModel = mongoose.model(
         offerprice: { type: Number, require: true },
         productpic: { type: String, require: true },
         pid: { type: String, require: true },
+        quantity: { type: String, require: true },
 
     })
 );

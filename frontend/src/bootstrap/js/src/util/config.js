@@ -9,10 +9,10 @@ import Manipulator from '../dom/manipulator.js'
 import { isElement, toType } from './index.js'
 
 /**
- * Class definition
+ * className definition
  */
 
-class Config {
+className Config {
   // Getters
   static get Default() {
     return {}

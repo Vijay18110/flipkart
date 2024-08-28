@@ -5,27 +5,30 @@ import CategorydataLoad from './CategorydataLoad'
 import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import { useCookies } from 'react-cookie';
-import { useContext } from 'react'
 import { CradContext } from './Context'
-// import { cardcontext } from './Nav/cardContext';
+import { useDispatch } from 'react-redux'
 const Customersubcategory = () => {
-    // const { setcount } = useContext(cardcontext);
     const { id } = useParams();
     const [cookie, createcookie, removecookie] = useCookies();
     const Navigate = useNavigate();
     const [subcatdata, setsubcatdata] = useState([]);
     const [productdata, setproductdata] = useState([]);
-    const [count, setcount] = useState(0);
     const [carddata, setcarddata] = useState([]);
-
+    const dispatch = useDispatch();
     useEffect(() => {
-        if (cookie["customer"] != null) {
-            counttotalcard()
-        }
+        counttotalcard()
         loadsubcategory(id)
     }, [subcatdata])
-
-
+    const counttotalcard = async () => {
+        const re = await fetch("http://localhost:7000/carddata", {
+            method: "PATCH",
+            headers: { "Content-Type": "Application/json" },
+            body: JSON.stringify({ username: cookie.customer })
+        })
+        const data = await re.json();
+        setcarddata(data)
+        dispatch({ type: "initial", initialdata: carddata.length })
+    }
     const loadsubcategory = async (id) => {
         const re = await fetch("http://localhost:7000/subcategory", {
             method: "PATCH",
@@ -44,17 +47,6 @@ const Customersubcategory = () => {
         const data = await re.json();
         setproductdata(data);
     }
-
-    const counttotalcard = async () => {
-        const re = await fetch("http://localhost:7000/carddata", {
-            method: "PATCH",
-            headers: { "Content-Type": "Application/json" },
-            body: JSON.stringify({ username: cookie.customer })
-        })
-        const data = await re.json();
-        setcarddata(data)
-        setcount(carddata.length);
-    }
     const Buy = async (productname, price, offerprice, productpic, id) => {
         if (cookie["customer"] == null) {
             Navigate('/customer/register/' + id)
@@ -63,21 +55,19 @@ const Customersubcategory = () => {
             const re = await fetch("http://localhost:7000/carddata", {
                 method: "POST",
                 headers: { "Content-Type": "Application/json" },
-                body: JSON.stringify({ productname: productname, price: price, offerprice: offerprice, username: cookie.customer, productpic: productpic, pid: id })
+                body: JSON.stringify({ productname: productname, price: price, offerprice: offerprice, username: cookie.customer, productpic: productpic, pid: id, quantity: "1" })
             }
             )
+            dispatch({ type: "plus" })
             const data = await re.json();
         }
     }
     return (
         <CradContext.Provider value={{
-            count,
-            setcount,
-            counttotalcard
         }}>
             <div className='container-fluid'>
                 <div className="row">
-                    <Nav ></Nav>
+                    <Nav></Nav>
                     <CategorydataLoad></CategorydataLoad>
                 </div>
                 <div className="row mt-5">
@@ -96,19 +86,17 @@ const Customersubcategory = () => {
                             <div className="col-md d-flex flex-wrap gap-4 ">
                                 {productdata.map((data) => {
                                     return (
-                                        <div class="card ccard" style={{ width: "200px" }}>
-                                            <img class="card-img-top" src={"http://localhost:7000/" + data.productpic} alt="Card image" style={{
+                                        <div className="card ccard" style={{ width: "200px" }}>
+                                            <img className="card-img-top" src={"http://localhost:7000/" + data.productpic} alt="Card image" style={{
                                                 width: "100%", height: "100px"
-
                                             }}></img>
-                                            <div class="card-body">
-                                                <h4 class="card-title">{data.productname}</h4>
-                                                <p class="card-text"> ₹ <del className='text-danger'> {data.price} </del> &nbsp;<span className='text-success'>  {data.offerprice}</span></p>
-                                                <p class="card-text">{data.desc}</p>
-                                                <button class="btn btn-primary" onClick={() => {
+                                            <div className="card-body">
+                                                <h4 className="card-title">{data.productname}</h4>
+                                                <p className="card-text"> ₹ <del className='text-danger'> {data.price} </del> &nbsp;<span className='text-success'>  {data.offerprice}</span></p>
+                                                <p className="card-text">{data.desc}</p>
+                                                <button className="btn btn-primary" onClick={() => {
                                                     Buy(data.productname, data.price, data.offerprice, data.productpic, data._id)
 
-                                                        , counttotalcard()
                                                 }}  > Add to Card</button>
                                             </div>
                                         </div>

@@ -9,11 +9,11 @@ import img7 from './assets/img7.webp';
 const Banner = () => {
     return (
         // <!-- Carousel -->
-        <div id="demo" class="carousel slide" data-bs-ride="carousel">
+        <div id="demo" className="carousel slide" data-bs-ride="carousel">
 
             {/* <!-- Indicators/dots --> */}
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+            <div className="carousel-indicators">
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" className="active"></button>
                 <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
                 <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
                 <button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
@@ -23,32 +23,32 @@ const Banner = () => {
             </div>
 
             {/* <!-- The slideshow/carousel --> */}
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src={img1} alt="Los Angeles" class="d-block w-100" />
+            <div className="carousel-inner">
+                <div className="carousel-item active">
+                    <img src={img1} alt="Los Angeles" className="d-block w-100" />
                 </div>
-                <div class="carousel-item">
-                    <img src={img3} alt="Chicago" class="d-block w-100" />
+                <div className="carousel-item">
+                    <img src={img3} alt="Chicago" className="d-block w-100" />
                 </div>
-                <div class="carousel-item">
-                    <img src={img2} alt="New York" class="d-block w-100" />
-                </div> <div class="carousel-item">
-                    <img src={img4} alt="New York" class="d-block w-100" />
-                </div> <div class="carousel-item">
-                    <img src={img5} alt="New York" class="d-block w-100" />
-                </div> <div class="carousel-item">
-                    <img src={img6} alt="New York" class="d-block w-100" />
-                </div> <div class="carousel-item">
-                    <img src={img7} alt="New York" class="d-block w-100" />
+                <div className="carousel-item">
+                    <img src={img2} alt="New York" className="d-block w-100" />
+                </div> <div className="carousel-item">
+                    <img src={img4} alt="New York" className="d-block w-100" />
+                </div> <div className="carousel-item">
+                    <img src={img5} alt="New York" className="d-block w-100" />
+                </div> <div className="carousel-item">
+                    <img src={img6} alt="New York" className="d-block w-100" />
+                </div> <div className="carousel-item">
+                    <img src={img7} alt="New York" className="d-block w-100" />
                 </div>
             </div>
 
             {/* <!-- Left and right controls/icons --> */}
-            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
+            <button className="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon"></span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
+            <button className="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                <span className="carousel-control-next-icon"></span>
             </button>
         </div>
 

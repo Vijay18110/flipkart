@@ -19,7 +19,7 @@ const NAME = 'TemplateFactory'
 const Default = {
   allowList: DefaultAllowlist,
   content: {}, // { selector : text ,  selector2 : text2 , }
-  extraClass: '',
+  extraclassName: '',
   html: false,
   sanitize: true,
   sanitizeFn: null,
@@ -29,7 +29,7 @@ const Default = {
 const DefaultType = {
   allowList: 'object',
   content: 'object',
-  extraClass: '(string|function)',
+  extraclassName: '(string|function)',
   html: 'boolean',
   sanitize: 'boolean',
   sanitizeFn: '(null|function)',
@@ -42,10 +42,10 @@ const DefaultContentType = {
 }
 
 /**
- * Class definition
+ * className definition
  */
 
-class TemplateFactory extends Config {
+className TemplateFactory extends Config {
   constructor(config) {
     super()
     this._config = this._getConfig(config)
@@ -90,10 +90,10 @@ class TemplateFactory extends Config {
     }
 
     const template = templateWrapper.children[0]
-    const extraClass = this._resolvePossibleFunction(this._config.extraClass)
+    const extraclassName = this._resolvePossibleFunction(this._config.extraclassName)
 
-    if (extraClass) {
-      template.classList.add(...extraClass.split(' '))
+    if (extraclassName) {
+      template.classNameList.add(...extraclassName.split(' '))
     }
 
     return template

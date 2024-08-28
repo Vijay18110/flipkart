@@ -45,15 +45,15 @@ const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`
 const EVENT_KEYDOWN_DATA_API = `keydown${EVENT_KEY}${DATA_API_KEY}`
 const EVENT_KEYUP_DATA_API = `keyup${EVENT_KEY}${DATA_API_KEY}`
 
-const CLASS_NAME_SHOW = 'show'
-const CLASS_NAME_DROPUP = 'dropup'
-const CLASS_NAME_DROPEND = 'dropend'
-const CLASS_NAME_DROPSTART = 'dropstart'
-const CLASS_NAME_DROPUP_CENTER = 'dropup-center'
-const CLASS_NAME_DROPDOWN_CENTER = 'dropdown-center'
+const className_NAME_SHOW = 'show'
+const className_NAME_DROPUP = 'dropup'
+const className_NAME_DROPEND = 'dropend'
+const className_NAME_DROPSTART = 'dropstart'
+const className_NAME_DROPUP_CENTER = 'dropup-center'
+const className_NAME_DROPDOWN_CENTER = 'dropdown-center'
 
 const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="dropdown"]:not(.disabled):not(:disabled)'
-const SELECTOR_DATA_TOGGLE_SHOWN = `${SELECTOR_DATA_TOGGLE}.${CLASS_NAME_SHOW}`
+const SELECTOR_DATA_TOGGLE_SHOWN = `${SELECTOR_DATA_TOGGLE}.${className_NAME_SHOW}`
 const SELECTOR_MENU = '.dropdown-menu'
 const SELECTOR_NAVBAR = '.navbar'
 const SELECTOR_NAVBAR_NAV = '.navbar-nav'
@@ -87,10 +87,10 @@ const DefaultType = {
 }
 
 /**
- * Class definition
+ * className definition
  */
 
-class Dropdown extends BaseComponent {
+className Dropdown extends BaseComponent {
   constructor(element, config) {
     super(element, config)
 
@@ -151,8 +151,8 @@ class Dropdown extends BaseComponent {
     this._element.focus()
     this._element.setAttribute('aria-expanded', true)
 
-    this._menu.classList.add(CLASS_NAME_SHOW)
-    this._element.classList.add(CLASS_NAME_SHOW)
+    this._menu.classNameList.add(className_NAME_SHOW)
+    this._element.classNameList.add(className_NAME_SHOW)
     EventHandler.trigger(this._element, EVENT_SHOWN, relatedTarget)
   }
 
@@ -202,8 +202,8 @@ class Dropdown extends BaseComponent {
       this._popper.destroy()
     }
 
-    this._menu.classList.remove(CLASS_NAME_SHOW)
-    this._element.classList.remove(CLASS_NAME_SHOW)
+    this._menu.classNameList.remove(className_NAME_SHOW)
+    this._element.classNameList.remove(className_NAME_SHOW)
     this._element.setAttribute('aria-expanded', 'false')
     Manipulator.removeDataAttribute(this._menu, 'popper')
     EventHandler.trigger(this._element, EVENT_HIDDEN, relatedTarget)
@@ -242,32 +242,32 @@ class Dropdown extends BaseComponent {
   }
 
   _isShown() {
-    return this._menu.classList.contains(CLASS_NAME_SHOW)
+    return this._menu.classNameList.contains(className_NAME_SHOW)
   }
 
   _getPlacement() {
     const parentDropdown = this._parent
 
-    if (parentDropdown.classList.contains(CLASS_NAME_DROPEND)) {
+    if (parentDropdown.classNameList.contains(className_NAME_DROPEND)) {
       return PLACEMENT_RIGHT
     }
 
-    if (parentDropdown.classList.contains(CLASS_NAME_DROPSTART)) {
+    if (parentDropdown.classNameList.contains(className_NAME_DROPSTART)) {
       return PLACEMENT_LEFT
     }
 
-    if (parentDropdown.classList.contains(CLASS_NAME_DROPUP_CENTER)) {
+    if (parentDropdown.classNameList.contains(className_NAME_DROPUP_CENTER)) {
       return PLACEMENT_TOPCENTER
     }
 
-    if (parentDropdown.classList.contains(CLASS_NAME_DROPDOWN_CENTER)) {
+    if (parentDropdown.classNameList.contains(className_NAME_DROPDOWN_CENTER)) {
       return PLACEMENT_BOTTOMCENTER
     }
 
     // We need to trim the value because custom properties can also include spaces
     const isEnd = getComputedStyle(this._menu).getPropertyValue('--bs-position').trim() === 'end'
 
-    if (parentDropdown.classList.contains(CLASS_NAME_DROPUP)) {
+    if (parentDropdown.classNameList.contains(className_NAME_DROPUP)) {
       return isEnd ? PLACEMENT_TOPEND : PLACEMENT_TOP
     }
 

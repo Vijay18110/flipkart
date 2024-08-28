@@ -46,13 +46,13 @@ const EVENT_DRAG_START = `dragstart${EVENT_KEY}`
 const EVENT_LOAD_DATA_API = `load${EVENT_KEY}${DATA_API_KEY}`
 const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`
 
-const CLASS_NAME_CAROUSEL = 'carousel'
-const CLASS_NAME_ACTIVE = 'active'
-const CLASS_NAME_SLIDE = 'slide'
-const CLASS_NAME_END = 'carousel-item-end'
-const CLASS_NAME_START = 'carousel-item-start'
-const CLASS_NAME_NEXT = 'carousel-item-next'
-const CLASS_NAME_PREV = 'carousel-item-prev'
+const className_NAME_CAROUSEL = 'carousel'
+const className_NAME_ACTIVE = 'active'
+const className_NAME_SLIDE = 'slide'
+const className_NAME_END = 'carousel-item-end'
+const className_NAME_START = 'carousel-item-start'
+const className_NAME_NEXT = 'carousel-item-next'
+const className_NAME_PREV = 'carousel-item-prev'
 
 const SELECTOR_ACTIVE = '.active'
 const SELECTOR_ITEM = '.carousel-item'
@@ -86,10 +86,10 @@ const DefaultType = {
 }
 
 /**
- * Class definition
+ * className definition
  */
 
-class Carousel extends BaseComponent {
+className Carousel extends BaseComponent {
   constructor(element, config) {
     super(element, config)
 
@@ -102,7 +102,7 @@ class Carousel extends BaseComponent {
     this._indicatorsElement = SelectorEngine.findOne(SELECTOR_INDICATORS, this._element)
     this._addEventListeners()
 
-    if (this._config.ride === CLASS_NAME_CAROUSEL) {
+    if (this._config.ride === className_NAME_CAROUSEL) {
       this.cycle()
     }
   }
@@ -274,13 +274,13 @@ class Carousel extends BaseComponent {
 
     const activeIndicator = SelectorEngine.findOne(SELECTOR_ACTIVE, this._indicatorsElement)
 
-    activeIndicator.classList.remove(CLASS_NAME_ACTIVE)
+    activeIndicator.classNameList.remove(className_NAME_ACTIVE)
     activeIndicator.removeAttribute('aria-current')
 
     const newActiveIndicator = SelectorEngine.findOne(`[data-bs-slide-to="${index}"]`, this._indicatorsElement)
 
     if (newActiveIndicator) {
-      newActiveIndicator.classList.add(CLASS_NAME_ACTIVE)
+      newActiveIndicator.classNameList.add(className_NAME_ACTIVE)
       newActiveIndicator.setAttribute('aria-current', 'true')
     }
   }
@@ -341,21 +341,21 @@ class Carousel extends BaseComponent {
     this._setActiveIndicatorElement(nextElementIndex)
     this._activeElement = nextElement
 
-    const directionalClassName = isNext ? CLASS_NAME_START : CLASS_NAME_END
-    const orderClassName = isNext ? CLASS_NAME_NEXT : CLASS_NAME_PREV
+    const directionalclassName = isNext ? className_NAME_START : className_NAME_END
+    const orderclassName = isNext ? className_NAME_NEXT : className_NAME_PREV
 
-    nextElement.classList.add(orderClassName)
+    nextElement.classNameList.add(orderclassName)
 
     reflow(nextElement)
 
-    activeElement.classList.add(directionalClassName)
-    nextElement.classList.add(directionalClassName)
+    activeElement.classNameList.add(directionalclassName)
+    nextElement.classNameList.add(directionalclassName)
 
     const completeCallBack = () => {
-      nextElement.classList.remove(directionalClassName, orderClassName)
-      nextElement.classList.add(CLASS_NAME_ACTIVE)
+      nextElement.classNameList.remove(directionalclassName, orderclassName)
+      nextElement.classNameList.add(className_NAME_ACTIVE)
 
-      activeElement.classList.remove(CLASS_NAME_ACTIVE, orderClassName, directionalClassName)
+      activeElement.classNameList.remove(className_NAME_ACTIVE, orderclassName, directionalclassName)
 
       this._isSliding = false
 
@@ -370,7 +370,7 @@ class Carousel extends BaseComponent {
   }
 
   _isAnimated() {
-    return this._element.classList.contains(CLASS_NAME_SLIDE)
+    return this._element.classNameList.contains(className_NAME_SLIDE)
   }
 
   _getActive() {
@@ -432,7 +432,7 @@ class Carousel extends BaseComponent {
 EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_SLIDE, function (event) {
   const target = SelectorEngine.getElementFromSelector(this)
 
-  if (!target || !target.classList.contains(CLASS_NAME_CAROUSEL)) {
+  if (!target || !target.classNameList.contains(className_NAME_CAROUSEL)) {
     return
   }
 

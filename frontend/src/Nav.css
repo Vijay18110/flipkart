@@ -1,11 +1,18 @@
 .input {
-    width: 350px;
+    width: 100%;
+    margin: 0px;
     background-color: lightblue;
     outline: none;
     border: none;
     padding: 10px;
-    padding-left: 60px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
 
+@media screen and (width:576px) {
+    .input {
+        width: 100%;
+    }
 }
 
 .searchicon {
@@ -18,6 +25,7 @@
 .collast {
     display: flex;
     flex-direction: row;
+    align-items: start;
 }
 
 .collast button {
