@@ -12,7 +12,7 @@ const Customer = () => {
     const [subcatdata, setsubcatdata] = useState([])
     const dispatch = useDispatch();
     const [cookie, createcookie, removecookie] = useCookies()
-    const [carddata, setcarddata] = useState();
+    const [carddata, setcarddata] = useState([]);
     useEffect(() => {
         counttotalcard()
         loadsubcategoryomobile(idmobile)
@@ -35,8 +35,10 @@ const Customer = () => {
             body: JSON.stringify({ username: cookie.customer })
         })
         const data = await re.json();
-        setcarddata(data)
-        dispatch({ type: "initial", initialdata: carddata.length })
+        if (data) {
+            setcarddata(data)
+            dispatch({ type: "initial", initialdata: carddata.length })
+        }
 
 
     }
@@ -84,9 +86,9 @@ const Customer = () => {
                     </div>
                     <div className="row d-flex flex-wrap" >
                         <div className="col-6-md col-lg-10 col-ms-4 d-flex gap-2 flex-wrap">
-                            {subcatdata.map((data) => {
+                            {subcatdata.map((data, index) => {
                                 return (
-                                    <div className="card ccard" style={{ width: "180px" }}>
+                                    <div key={index} className="card ccard" style={{ width: "180px" }}>
                                         <div className='card-img'> <img className="card-img-top" src={"http://localhost:7000/" + data.subcategorypic} alt="Card image" style={{
                                             width: "100%", height: "150px"
 

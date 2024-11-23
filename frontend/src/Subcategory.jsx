@@ -90,7 +90,6 @@ function Subcategory() {
         });
         const data = await re.json();
         alert(data.msg);
-        // loadsubcategory("66b5068daf395848982729b2");
         loadsubcategory(catid);
 
     };

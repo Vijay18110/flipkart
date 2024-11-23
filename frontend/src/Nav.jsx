@@ -8,7 +8,7 @@ import logo from './assets/vijay1.png'
 import { useCookies } from 'react-cookie'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import './Nav.css'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 const Nav = () => {
     const count = useSelector((state) => state.managecard);
     const Navigate = useNavigate();

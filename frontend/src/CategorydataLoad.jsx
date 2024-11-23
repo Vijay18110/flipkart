@@ -24,9 +24,9 @@ const CategorydataLoad = () => {
         <div className='row  bg-white w-100 p-0 m-0 row2 mt-2'>
 
             <div className=" d-flex  flex-wrap justify-content-between">
-                {catdata.map((data) => {
+                {catdata.map((data, index) => {
                     return (
-                        <div className='category justify-content-center'>
+                        <div key={index} className='category justify-content-center'>
                             <Link to={"/subcategory/" + data._id}>
                                 <img className="rounded-circle" style={{ width: "70px", height: "70px" }} src={"http://localhost:7000/" + data.categorypic} alt="pic" />
 
